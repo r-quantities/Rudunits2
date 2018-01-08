@@ -102,3 +102,9 @@ function() {
            exists=logical(1))
   return(rv$exists)
 }
+
+ud.add.dimensionless <- 
+function(name) {
+  .C('R_ut_add_dimensionless', name)
+  invisible(NULL)
+}

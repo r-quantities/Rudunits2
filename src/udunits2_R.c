@@ -209,3 +209,11 @@ void R_ut_get_symbol(char * const *ustring, char **rstring) {
 
   return;
 }
+
+void R_ut_add_dimensionless(char * const *name) {
+  ut_unit *u;
+  u = ut_new_dimensionless_unit(sys); 
+  if (ut_map_name_to_unit(*name, enc, u) != UT_SUCCESS) // const char* name, ut_encoding encoding); 
+    handle_error("R_ut_add_dimensionless");
+  return;
+}
