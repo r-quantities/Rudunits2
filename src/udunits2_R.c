@@ -213,7 +213,16 @@ void R_ut_get_symbol(char * const *ustring, char **rstring) {
 void R_ut_add_dimensionless(char * const *name) {
   ut_unit *u;
   u = ut_new_dimensionless_unit(sys); 
-  if (ut_map_name_to_unit(*name, enc, u) != UT_SUCCESS) // const char* name, ut_encoding encoding); 
+  if (ut_map_name_to_unit(*name, enc, u) != UT_SUCCESS)
+    handle_error("R_ut_add_dimensionless");
+  return;
+}
+
+void R_ut_add_scale(char *const *new, char *const *old, double *d) {
+  ut_unit *u_old, *u_new;
+  u_old = ut_parse(sys, *old, enc);
+  u_new = ut_scale(*d, u_old);
+  if (ut_map_name_to_unit(*new, enc, u_new) != UT_SUCCESS)
     handle_error("R_ut_add_dimensionless");
   return;
 }

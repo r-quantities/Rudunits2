@@ -108,3 +108,9 @@ function(name) {
   .C('R_ut_add_dimensionless', name)
   invisible(NULL)
 }
+
+ud.add.scale <-
+function(new_name, old_name, factor) {
+  .C('R_ut_add_scale', as.character(new_name), as.character(old_name), as.double(factor))
+  invisible(NULL)
+}
